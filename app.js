@@ -24,7 +24,7 @@ app.get('/:invite_code', (req, res) => {
 
 app.use( express.static(path.join(__dirname, 'assets') ) )
 
-app.set('views', './views')
+app.set('views', 'views')
 
 app.use('/scripts', express.static(__dirname + '/node_modules/'));
 
