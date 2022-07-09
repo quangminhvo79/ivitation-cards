@@ -10,13 +10,14 @@ app.get('/', (req, res) => {
   res.render('index', { title: 'Hey', message: 'Hello there!' })
 })
 
-app.get('/:invite_code', (req, res) => {
+app.get('/invite/:folder/:invite_code', (req, res) => {
   let invite_code = req.params.invite_code
+  let folder      = req.params.folder
 
-  video_path = path.join(__dirname, 'assets', 'videos', `${invite_code}.mp4`)
+  video_path = path.join(__dirname, 'assets', 'videos', folder, `${invite_code}.mp4`)
 
   if( fs.existsSync( video_path ) ){
-    res.render('index', { video_path: `videos/${invite_code}.mp4` })
+    res.render('index', { video_path: `/videos/${folder}/${invite_code}.mp4` })
   } else {
     res.send('404')
   }
