@@ -17,7 +17,7 @@ app.get('/invite/:folder/:invite_code', (req, res) => {
   video_path = path.join(__dirname, 'assets', 'videos', folder, `${invite_code}.mp4`)
 
   if( fs.existsSync( video_path ) ){
-    res.render('index', { video_path: `/videos/${folder}/${invite_code}.mp4` })
+    res.render('index', { video_path: `/videos/${folder}/${invite_code}.mp4`, title: 'Banca Night 2022 - Prudential' })
   } else {
     res.send('404')
   }
