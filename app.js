@@ -10,6 +10,17 @@ app.get('/', (req, res) => {
   res.render('index', { title: 'Hey', message: 'Hello there!' })
 })
 
+app.get('/ivitation-card',(req, res) => {
+  let invite_code = req.query.invite_code
+  let card_path = path.join(__dirname, 'assets', 'images', 'cards', `${invite_code}.png`)
+
+  if( fs.existsSync( card_path ) ){
+    res.render('ivitation_card', { card_path: `/images/cards/${invite_code}.png`, invite_code: invite_code })
+  } else {
+    res.render('ivitation_card', { card_path: null })
+  }
+})
+
 app.get('/invite/:folder/:invite_code', (req, res) => {
   let invite_code = req.params.invite_code
   let folder      = req.params.folder
